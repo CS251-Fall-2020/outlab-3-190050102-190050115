@@ -27,23 +27,37 @@ class Node(object):
 
 
 def mirrorTree(node):
-	"""
-	Returns the mirror image of the tree rooted at node
-	"""
+	temp = Node()
+	if node.left is not None:
+		temp.right = mirrorTree(node.left)
+	if node.right is not None:
+		temp.left = mirrorTree(node.right)
+
+	return temp
 	pass
 
 
 def allTrees(n):
-	"""
-	Returns a list of all unique trees with n internal nodes
-	"""
+	trees =[]
+	if n == 0 :
+		temp = Node()
+		return [temp]
+	else:
+		for l in range(0,n):
+			r = n-1-l
+			ltrees = allTrees(l)
+			rtrees = allTrees(r)
+			trees += [Node(newl,newr) for newl in ltrees for newr in rtrees]
 	pass
 
 
 def allSymTrees(n):
-	"""
-	Returns a list of all unique symmetrical trees with n internal nodes
-	"""
+	sym = []
+	if(n%2 == 0):
+		return sym
+	total = allTrees(n)
+	sym = [tree for tree in total if tree == mirrorTree(tree)]
+	return sym
 	pass
 
 
