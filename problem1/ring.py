@@ -24,12 +24,6 @@ class RingInt:
         else:
             r = RingInt( (inv * self.value) % self.characteristic , self.characteristic )
             return r
-    
-    # def __truediv__(self, other):
-    #     res = (self.value + self.value*self.characteristic) / other.value
-    #     res = res % self.characteristic
-        
-    #     return RingInt(int(res), self.characteristic)
 
     def __pow__(self, other):
         return RingInt((self.value ** other.value )%self.characteristic, self.characteristic)

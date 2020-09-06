@@ -10,15 +10,12 @@ def sum1(k, x):
     zero = RingInt(0, k.characteristic)
     
     for j in range(k.value):
-        temp = x_pow / fact
-        # print(temp, fact, i, j, x_pow)
+        temp = x_pow/fact
         sum = sum + temp
         
         x_pow = x_pow * x
         fact = fact * i
-        
         i = i + one
-        
     return sum
 
 

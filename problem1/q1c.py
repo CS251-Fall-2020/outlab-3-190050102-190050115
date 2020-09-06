@@ -1,26 +1,34 @@
 from ring import *
 
 class Series:
-	def __init__(self):
-		sm = RingInt(0, self.characteristic)
-        x_pow = RingInt(1, self.characteristic)
-        fact = RingInt(1, self.characteristic)
-        i = RingInt(1, self.characteristic)
-        one = RingInt(1, self.characteristic)
-        zero = RingInt(0, self.characteristic)
-
-    def __iter__(self):
-    	return x_pow/fact
-
-    def __next__(self):
-    	sum = sum + temp
-            
-        x_pow = x_pow * self
-        fact = fact * i
+    def __init__(self, k, x, n):
+        self.k = RingInt(int(k), int(n))
+        self.x = RingInt(int(x), int(n))
+        self.n = int(n)
         
-        i = i + one
-
-        return x_pow/fact
+        self.x_pow = RingInt(1, self.n)
+        self.fact = RingInt(1, self.n)
+        self.i = RingInt(1, self.n)
+        self.one = RingInt(1, self.n)
+        self.zero = RingInt(0, self.n)
+        self.term = self.x_pow/self.fact
+        
+    def __str__(self):
+        return "{}".format(self.term)
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if(self.i == ( self.k + self.one )):
+            raise StopIteration
+        else:
+            self.term = self.x_pow/self.fact
+            self.x_pow = self.x_pow * self.x
+            self.fact = self.fact * self.i
+            self.i = self.i + self.one
+            
+            return self
 
 
 
