@@ -38,7 +38,6 @@ else:
 	for i in range(0,len(dirlist)):
 		canonpath+='/'
 		canonpath+=dirlist[i]
-		
 
 f1 = open(args.outfile,'w')
 f1.write(canonpath)

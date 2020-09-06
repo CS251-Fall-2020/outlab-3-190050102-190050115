@@ -54,16 +54,18 @@ def allTrees(n):
 
 def allSymTrees(n):
 	sym = []
+	if(n == 0) :
+		return [Node()]
 	if(n%2 == 0):
 		return sym
-	total = allTrees(n)
-	sym = [tree for tree in total if tree == mirrorTree(tree)]
+	total = allTrees((n-1)//2)
+	sym = [Node(tree,mirrorTree(tree)) for tree in total]
 	return sym
 	pass
 
 
 if __name__ == '__main__':
-	for x in allSymTrees(int(input())):
-		print(x)
+	l = allSymTrees(int(input()))
+	print(len(l))
 	node = Node(Node(Node(), Node()), Node())
 	print(node)
