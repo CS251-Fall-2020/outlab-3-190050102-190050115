@@ -8,7 +8,3 @@ def collapse(L):
 		return k
 	elif type(L) is str:
 		return L
-	
-k =  [ ["this","is"], [ [ ["okokok"],"an", "interesting", "python"], ["programming", "exercise."] ] ]
-s = collapse(k)
-print(s)
