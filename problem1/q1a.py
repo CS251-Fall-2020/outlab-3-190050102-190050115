@@ -2,7 +2,7 @@ import argparse
 from ring import *
 
 def sum1(k, x):
-    sum = RingInt(0, k.characteristic)
+    sm = RingInt(0, k.characteristic)
     x_pow = RingInt(1, k.characteristic)
     fact = RingInt(1, k.characteristic)
     i = RingInt(1, k.characteristic)
@@ -11,12 +11,12 @@ def sum1(k, x):
     
     for j in range(k.value):
         temp = x_pow/fact
-        sum = sum + temp
+        sm = sm + temp
         
         x_pow = x_pow * x
         fact = fact * i
         i = i + one
-    return sum
+    return sm
 
 
 def sum2(k, x):
@@ -32,28 +32,28 @@ def sum2(k, x):
     
     prod = RingInt(1, x.characteristic)
     for a in range(k.value):
-        sum = RingInt(0, x.characteristic)
+        sm = RingInt(0, x.characteristic)
         for b in range(a+1):
             try : 
-                sum = sum + fact[x.value + a]/(fact[b]*fact[x.value + a - b])
+                sm = sm + fact[x.value + a]/(fact[b]*fact[x.value + a - b])
             except ValueError: 
                 # print("UNDEFINED")
                 return
-        prod = prod * sum
+        prod = prod * sm
         
     return prod
     
 
 def sum3(k, x):
-    sum = RingInt(0, k.characteristic)
+    sm = RingInt(0, k.characteristic)
     i = RingInt(1, k.characteristic)
     one = RingInt(1, x.characteristic)
     
     for j in range(k.value):
-        sum += i ** x
+        sm += i ** x
         i = i + one
     
-    return sum
+    return sm
 
 
 parser = argparse.ArgumentParser()
@@ -65,15 +65,15 @@ in_file = open(args.input, "r")
 out_file = open(args.output, "w")
 
 for line in in_file.read().splitlines():
-    a, b, m, sum = [int(i) for i in line.split()]
+    a, b, m, sm = [int(i) for i in line.split()]
     k = RingInt(a, m)
     x = RingInt(b, m)
     
-    if sum==1:
+    if sm==1:
         res = sum1(k, x)
-    elif sum==2:
+    elif sm==2:
         res = sum2(k, x)
-    elif sum==3:
+    elif sm==3:
         res = sum3(k, x)
         
     res =  res.__str__()
