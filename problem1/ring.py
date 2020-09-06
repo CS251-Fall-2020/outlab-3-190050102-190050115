@@ -21,7 +21,7 @@ class RingInt:
         return r
 
     def __pow__(self, other):
-        return RingInt((self.value ** other.value )%self.characteristic, self.characteristic)
+        return RingInt((self.value ** other )%self.characteristic, self.characteristic)
     
     def __eq__(self, other):
         if self.value == other.value and self.characteristic == other.characteristic:
@@ -29,11 +29,12 @@ class RingInt:
         return False
  
     def __mod_inv(self, b, m):
-        if b==0:
-            return m
+        # if b==0:
+        #     return m
         for i in range(m):
             if( (b*i)%m == 1):
                 return i  
-
-        raise ValueError
-        return "UNDEFINED"
+        try:
+            int("test")
+        except ValueError: 
+            return "UNDEFINED"

@@ -17,10 +17,14 @@ def check(s, n):
     
     sum_a = 0
     for i in range(len(a)):
+        if int(a[i]) < 0:
+            return False
         sum_a += (i+1)*int(a[i])
     
     sum_b = 0
     for i in range(len(b)):
+        if int(b[i]) < 0:
+            return False
         sum_b += (i+1)*int(b[i])
         
     return sum_a%n == sum_b%n
@@ -32,7 +36,7 @@ n = file.readline()
 
 message = file.readline()
 
-codes = re.findall("\$\([\d\,]+\)\#\([\d\,]+\)\$", message)
+codes = re.findall("\$\([-?\d\,]+\)\#\([-?\d\,]+\)\$", message)
 
 corrup = False
 for code in codes:
