@@ -65,7 +65,7 @@ def allSymTrees(n):
 
 
 if __name__ == '__main__':
-	l = allSymTrees(int(input()))
-	print(len(l))
+	for x in allSymTrees(int(input())):
+		print(x)
 	node = Node(Node(Node(), Node()), Node())
 	print(node)
