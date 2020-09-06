@@ -23,10 +23,8 @@ def check(s, n):
     for i in range(len(b)):
         sum_b += (i+1)*int(b[i])
         
-    if sum_a%n == sum_b%n :
-        return "OK"
-    else:
-        return "CORRUPTED"
+    return sum_a%n == sum_b%n
+    
 
 
 file = open(args.message, "r")
@@ -36,5 +34,13 @@ message = file.readline()
 
 codes = re.findall("\$\([\d\,]+\)\#\([\d\,]+\)\$", message)
 
+corrup = False
 for code in codes:
-    print(check(code, int(n)))
+    if not check(code, int(n)):
+        corrup = True
+        
+if corrup:
+    print("CORRUPTED")
+else:
+    print("OK")
+        
