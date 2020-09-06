@@ -11,10 +11,7 @@ def sum1(k, x):
     
     for j in range(k.value):
         temp = x_pow/fact
-        if str(temp) == "UNDEFINED":
-            return "UNDEFINED"
         sm = sm + temp
-        
         x_pow = x_pow * x
         fact = fact * i
         i = i + one
@@ -78,17 +75,24 @@ for line in in_file.read().splitlines():
         x = b
     
     if sm==1:
-        res = sum1(k, x)
+        try:
+            res = sum1(k, x)
+            res =  str(res)
+            out_file.write(res + "\n")
+        except ValueError:
+            out_file.write("UNDEFINED" + "\n")
     elif sm==2:
         try:
             res = sum2(k, x)
+            res =  str(res)
+            out_file.write(res + "\n")
         except ValueError:
-            print("UNDEFINED")
+            out_file.write("UNDEFINED"+"\n")
     elif sm==3:
         try:
             res = sum3(k, x)
+            res =  str(res)
+            out_file.write(res + "\n")
         except ValueError:
-            print("UNDEFINED")
+            out_file.write("UNDEFINED"+"\n")
         
-    res =  str(res)
-    out_file.write(res + "\n")
