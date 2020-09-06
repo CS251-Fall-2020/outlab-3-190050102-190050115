@@ -3,7 +3,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-in','--infile',help="input")
+parser.add_argument('-inp','--infile',help="input")
 parser.add_argument('-out','--outfile',help="output")
 args = parser.parse_args()
 
