@@ -1,18 +1,18 @@
 from ring import *
 
 class Series:
-	def __init__():
-		sm = RingInt(0, k.characteristic)
-        x_pow = RingInt(1, k.characteristic)
-        fact = RingInt(1, k.characteristic)
-        i = RingInt(1, k.characteristic)
-        one = RingInt(1, k.characteristic)
-        zero = RingInt(0, k.characteristic)
+	def __init__(self):
+		sm = RingInt(0, self.characteristic)
+        x_pow = RingInt(1, self.characteristic)
+        fact = RingInt(1, self.characteristic)
+        i = RingInt(1, self.characteristic)
+        one = RingInt(1, self.characteristic)
+        zero = RingInt(0, self.characteristic)
 
-    def __iter__():
+    def __iter__(self):
     	return x_pow/fact
 
-    def __next__():
+    def __next__(self):
     	sum = sum + temp
             
         x_pow = x_pow * self

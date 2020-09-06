@@ -1,5 +1,5 @@
+import argparse
 from ring import *
-
 
 def sum1(k, x):
     sum = RingInt(0, k.characteristic)
@@ -32,20 +32,15 @@ def sum2(k, x):
     for j in range(1, x.value+k.value+1):
         fact.append( fact[j-1] * i )
         i = i + one
-    # print([i.value for i in fact])
     
     prod = RingInt(1, x.characteristic)
     for a in range(k.value):
         sum = RingInt(0, x.characteristic)
         for b in range(a+1):
-            # print(self.value + a, b, self.value + a - b)
             try : 
                 sum = sum + fact[x.value + a]/(fact[b]*fact[x.value + a - b])
-                # print(fact[self.value + a])
-                # print((fact[b]*fact[self.value + a - b]))
-                # print(sum)
             except ValueError: 
-                print("UNDEFINED")
+                # print("UNDEFINED")
                 return
         prod = prod * sum
         
@@ -64,42 +59,25 @@ def sum3(k, x):
     return sum
 
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-inp", "--input", help="Input File")
+parser.add_argument("-out", "--output", help="Output File")
+args = parser.parse_args()
 
+in_file = open(args.input, "r")
+out_file = open(args.output, "w")
 
-
-
-
-   
-# x = RingInt(2, 5)
-# k = RingInt(4, 5)
-
-# print(x.sum3(k))
- 
-n = int(input())
- 
-for i in range(n):           
-    a, b, c, d = input().split()
-    a = int(a)
-    b = int(b)
-    c = int(c)
-    d = int(d)
+for line in in_file.read().splitlines():
+    a, b, m, sum = [int(i) for i in line.split()]
+    k = RingInt(a, m)
+    x = RingInt(b, m)
     
-    k = RingInt(a, c)
-    x = RingInt(b, c)
-
-    if d==1:
-        print(sum1(k, x))
-    elif d==2:
-        print(sum2(k, x))
-    elif d==3:
-        print(sum3(k, x))
-    
-
-# print()
-# print(x+k)
-# print(x-k)
-# print(x*k)
-# print(x/k)
-# print(x**k)
-
-# print( isinstance(5.2, int) )
+    if sum==1:
+        res = sum1(k, x)
+    elif sum==2:
+        res = sum2(k, x)
+    elif sum==3:
+        res = sum3(k, x)
+        
+    res =  res.__str__()
+    out_file.write(res + "\n")

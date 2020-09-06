@@ -15,23 +15,21 @@ class RingInt:
     def __mul__(self, other):
         return RingInt((self.value * other.value)%self.characteristic, self.characteristic)
         
-    # def __truediv__(self, other):
-    #     inv = self.__mod_inv(other.value, self.characteristic)
-    #     if inv == -1:
-    #         raise ValueError("UNDEFINED")
-    #         return "UNDEFINED"
-    #         # print("UNDEFINED")
-    #         # return ValueError
-    #     else:
-    #         print(inv)
-    #         r = RingInt( (inv * self.value) % self.characteristic , self.characteristic )
-    #         return r
-    
     def __truediv__(self, other):
-        res = (self.value + self.value*self.characteristic) / other.value
-        res = res % self.characteristic
+        inv = self.__mod_inv(other.value, self.characteristic)
+        # print(inv)
+        if inv == -1:
+            raise ValueError
+            return "UNDEFINED"
+        else:
+            r = RingInt( (inv * self.value) % self.characteristic , self.characteristic )
+            return r
+    
+    # def __truediv__(self, other):
+    #     res = (self.value + self.value*self.characteristic) / other.value
+    #     res = res % self.characteristic
         
-        return RingInt(int(res), self.characteristic)
+    #     return RingInt(int(res), self.characteristic)
 
     def __pow__(self, other):
         return RingInt((self.value ** other.value )%self.characteristic, self.characteristic)
@@ -56,11 +54,11 @@ class RingInt:
             return self.__gcd(a, b-a)
     
     def __mod_inv(self, b, m):
-        g = self.__gcd(b, m)  
-        if (g != 1): 
-            # return ValueError
-            raise ValueError("UNDEFINED")
-            return
-        else:
-            return pow(b, m - 2, m) 
-    
+        if b==0:
+            return m
+        for i in range(m):
+            if( (b*i)%m == 1):
+                return i  
+
+        raise ValueError
+        return "UNDEFINED"
