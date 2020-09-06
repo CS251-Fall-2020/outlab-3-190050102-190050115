@@ -7,13 +7,12 @@ def sum1(k, x):
     fact = RingInt(1, k.characteristic)
     i = RingInt(1, k.characteristic)
     one = RingInt(1, k.characteristic)
-    zero = RingInt(0, k.characteristic)
+    # zero = RingInt(0, k.characteristic)
     
     for j in range(k.value):
-        print(x_pow)
-        print(type(x_pow))
-        print(fact)
         temp = x_pow/fact
+        if str(temp) == "UNDEFINED":
+            return "UNDEFINED"
         sm = sm + temp
         
         x_pow = x_pow * x
@@ -39,7 +38,7 @@ def sum2(k, x):
         for b in range(a+1):
             try : 
                 sm = sm + fact[x.value + a]/(fact[b]*fact[x.value + a - b])
-            except ValueError: 
+            except: 
                 return "UNDEFINED"
         prod = prod * sm
         
@@ -54,6 +53,8 @@ def sum3(k, x):
     for j in range(k.value):
         if(x < 0):
             sm += one/(i**x)
+        else:
+            sm += i ** x
         
         i = i + one
     
@@ -71,7 +72,7 @@ out_file = open(args.output, "w")
 for line in in_file.read().splitlines():
     a, b, m, sm = [int(i) for i in line.split()]
     k = RingInt(a, m)
-    if sm is not 3:
+    if sm != 3:
         x = RingInt(b, m)
     else:
         x = b
@@ -79,9 +80,15 @@ for line in in_file.read().splitlines():
     if sm==1:
         res = sum1(k, x)
     elif sm==2:
-        res = sum2(k, x)
+        try:
+            res = sum2(k, x)
+        except ValueError:
+            print("UNDEFINED")
     elif sm==3:
-        res = sum3(k, x)
+        try:
+            res = sum3(k, x)
+        except ValueError:
+            print("UNDEFINED")
         
-    res =  res.__str__()
+    res =  str(res)
     out_file.write(res + "\n")

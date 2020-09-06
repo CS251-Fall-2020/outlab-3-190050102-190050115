@@ -17,6 +17,8 @@ class RingInt:
         
     def __truediv__(self, other):
         inv = self.__mod_inv(other.value, self.characteristic)
+        if inv == "UNDEFINED":
+            return "UNDEFINED"
         r = RingInt( (inv * self.value) % self.characteristic , self.characteristic )
         return r
 

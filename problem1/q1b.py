@@ -17,13 +17,13 @@ def check(s, n):
     
     sum_a = 0
     for i in range(len(a)):
-        if int(a[i]) < 0:
+        if int(a[i]) < 0 or int(a[i]) > n:
             return False
         sum_a += (i+1)*int(a[i])
     
     sum_b = 0
     for i in range(len(b)):
-        if int(b[i]) < 0:
+        if int(b[i]) < 0 or int(b[i]) > n:
             return False
         sum_b += (i+1)*int(b[i])
         
