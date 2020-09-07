@@ -23,7 +23,10 @@ class RingInt:
         return r
 
     def __pow__(self, other):
-        return RingInt((self.value ** other )%self.characteristic, self.characteristic)
+        if other >= 0:
+            return RingInt((self.value ** other )%self.characteristic, self.characteristic)
+        else:
+            return RingInt(1, self.characteristic) / RingInt((self.value ** abs(other) )%self.characteristic, self.characteristic)
     
     def __eq__(self, other):
         if self.value == other.value and self.characteristic == other.characteristic:

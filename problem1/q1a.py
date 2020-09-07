@@ -33,7 +33,9 @@ def sum2(k, x):
     for a in range(k.value):
         sm = RingInt(0, x.characteristic)
         for b in range(a+1):
-            try : 
+            try :
+                if x.value + a == 0:
+                    raise ValueError
                 sm = sm + fact[x.value + a]/(fact[b]*fact[x.value + a - b])
             except: 
                 return "UNDEFINED"
@@ -48,10 +50,7 @@ def sum3(k, x):
     one = RingInt(1, k.characteristic)
     
     for j in range(k.value):
-        if(x < 0):
-            sm += one/(i**x)
-        else:
-            sm += i ** x
+        sm += i ** x
         
         i = i + one
     
