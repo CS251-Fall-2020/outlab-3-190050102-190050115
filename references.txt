@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/51520/how-to-get-an-absolute-file-path-in-python
+https://www.programiz.com/python-programming/list-comprehension
+https://www.w3schools.com/python/ref_func_map.asp
+http://cslibrary.stanford.edu/110/BinaryTrees.html
